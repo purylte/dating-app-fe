@@ -18,10 +18,7 @@ export default function RootLayout({
     <html lang="en" data-theme="valentine">
       <body className={inter.className}>
         <div className="flex flex-col h-screen w-screen bg-base-100">
-          <Header />
-          <div className="flex-1 px-4 pt-4 flex overflow-y-hidden">
-            {children}
-          </div>
+          {children}
         </div>
       </body>
     </html>
