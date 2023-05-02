@@ -53,7 +53,7 @@ export default function Login() {
         </label>
         <label className="label">
           <Link href="/register" className="label-text-alt" hover>
-            Don't have an account? Register here.
+            Dont have an account? Register here.
           </Link>
         </label>
         <Button className="mt-6" type="submit">
