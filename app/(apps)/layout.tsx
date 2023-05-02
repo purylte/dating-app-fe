@@ -17,14 +17,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const token = getCookie("access-token");
-  const resp = await fetch("http://localhost:3000/api/verify", {
-    method: "GET",
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-    next: { revalidate: 10 },
-  });
-  if (resp.status === 401) {
+  // const resp = await fetch("http://localhost:3000/api/verify", {
+  //   method: "GET",
+  //   headers: {
+  //     Authorization: "Bearer " + token,
+  //   },
+  //   next: { revalidate: 10 },
+  // });
+  // if (resp.status === 401) {
+  //   redirect("/login");
+  // }
+  if (!token) {
     redirect("/login");
   }
   return (
