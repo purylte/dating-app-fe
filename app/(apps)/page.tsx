@@ -4,6 +4,9 @@ import SwipeButton from "@/components/home/SwipeButton";
 import Icon from "@/components/Icon";
 import fetchAuth from "@/utils/fetchAuth";
 import { useEffect, useState } from "react";
+import { get } from "http";
+import { getFilter } from "@/utils/filter";
+import { Button } from "react-daisyui";
 
 type ProfileType = {
   id: number;
@@ -47,7 +50,10 @@ export default function Home() {
   useEffect(() => {
     if (!isLoading && doneIdx >= recommendeds.length) {
       setIsLoading(true);
-      fetchAuth("recommendation", "recommendation/", {})
+      fetchAuth("recommendation", "recommendation/", {
+        method: "POST",
+        body: JSON.stringify(getFilter()),
+      })
         .then((res) => {
           res.json().then((data) => {
             const recommendedsList: RecomendedType[] = [];
@@ -69,11 +75,46 @@ export default function Home() {
           });
         })
         .catch((err) => {
-          console.log(err);
+          setRecommendeds([]);
+          setDoneIdx(0);
+          setIsLoading(false);
         });
     }
     setCurrentRec(recommendeds[doneIdx]);
   }, [recommendeds, doneIdx, isLoading]);
+
+  const retry = () => {
+    fetchAuth("recommendation", "recommendation/", {
+      method: "POST",
+      body: JSON.stringify(getFilter()),
+    })
+      .then((res) => {
+        res.json().then((data) => {
+          const recommendedsList: RecomendedType[] = [];
+          data.map((recommended: ProfileType) => {
+            recommendedsList.push({
+              id: recommended.id,
+              username: recommended.user.username,
+              gender: recommended.gender,
+              age: recommended.umur,
+              location: recommended.domisili,
+              description: recommended.deskripsi,
+              hobbies: recommended.hobi.map((hobi) => hobi.hobi),
+              genres: recommended.genre.map((genre) => genre.genre),
+            });
+          });
+          setRecommendeds(recommendedsList);
+          setDoneIdx(0);
+          setIsLoading(false);
+        });
+      })
+      .catch((err) => {
+        setRecommendeds([]);
+        setDoneIdx(0);
+        setIsLoading(false);
+      });
+    setCurrentRec(recommendeds[doneIdx]);
+  };
 
   return (
     <>
@@ -121,7 +162,10 @@ export default function Home() {
         </div>
       )}
       {!currentRec && (
-        <h1 className="text-center text-2xl">Fetching recommendation...</h1>
+        <>
+          <h1 className="text-center text-2xl">Fetching recommendation...</h1>
+          <Button onClick={() => retry()}>Retry</Button>
+        </>
       )}
     </>
   );

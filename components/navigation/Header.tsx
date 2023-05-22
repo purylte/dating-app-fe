@@ -18,6 +18,9 @@ export default function Header() {
             <Link href="/">Home</Link>
           </Button>
           <Button className="text-xl normal-case" color="ghost">
+            <Link href="/filter">Filter</Link>
+          </Button>
+          <Button className="text-xl normal-case" color="ghost">
             <Link href="/chat">Chat</Link>
           </Button>
         </div>
