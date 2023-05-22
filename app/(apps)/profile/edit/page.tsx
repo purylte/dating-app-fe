@@ -26,7 +26,6 @@ export default function EditProfilePage() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    console.log(formData);
     fetchAuth("profile", "api/profile/update_profile_username/", {
       method: "POST",
       body: JSON.stringify({
