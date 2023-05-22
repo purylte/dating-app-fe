@@ -7,6 +7,7 @@ type SwipeProfileProps = {
   age: number;
   gender: string;
   description: string;
+  location: string;
   genres: string[];
   hobbies: string[];
   photos: string[];
@@ -16,6 +17,7 @@ export default function SwipeProfile({
   username,
   age,
   gender,
+  location,
   description,
   genres,
   hobbies,
@@ -32,10 +34,14 @@ export default function SwipeProfile({
         </p>
         <div className="pb-4 text-subheader">
           <p>
-            <Icon icon="ic:round-work" /> {hobbies.join(", ")}
+            <Icon icon="mdi:location" /> {location}
           </p>
           <p>
-            <Icon icon="material-symbols:school-rounded" /> {genres.join(", ")}
+            <Icon icon="streamline:travel-places-theater-mask-hobby-theater-masks-drama-event-show-entertainment" />{" "}
+            {hobbies.join(", ")}
+          </p>
+          <p>
+            <Icon icon="mdi:music" /> {genres.join(", ")}
           </p>
         </div>
         <p className="text-paragraph">{description}</p>

@@ -33,7 +33,7 @@ export default function Profile({
           {hobbies?.join(", ")}
         </p>
         <p>
-          <Icon icon="material-symbols:movie" /> {genres?.join(", ")}
+          <Icon icon="mdi:music" /> {genres?.join(", ")}
         </p>
       </div>
       <p className="text-paragraph overflow-y-auto">{description}</p>

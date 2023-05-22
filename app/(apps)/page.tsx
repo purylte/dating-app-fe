@@ -126,8 +126,9 @@ export default function Home() {
               age={currentRec.age}
               gender={currentRec.gender}
               hobbies={currentRec.hobbies}
-              genres={currentRec?.genres}
+              genres={currentRec.genres}
               description={currentRec.description}
+              location={currentRec.location}
               photos={[
                 "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.mos.cms.futurecdn.net%2FQKvTkQBuSLZeNbFxQbjWR6.jpg&f=1&nofb=1&ipt=e4a97c31ae1dbd7a4a9e92d83e4bb6edd3f577a222998f5f9453cbc74b94131e&ipo=images",
                 "https://www.pockettactics.com/wp-content/sites/pockettactics/2022/05/honkai-star-rail-tier-list-june.jpg",
@@ -162,10 +163,12 @@ export default function Home() {
         </div>
       )}
       {!currentRec && (
-        <>
-          <h1 className="text-center text-2xl">Fetching recommendation...</h1>
-          <Button onClick={() => retry()}>Retry</Button>
-        </>
+        <div className="flex-1 flex flex-col items-center justify-center gap-4">
+          <h1 className="text-header">Fetching recommendation...</h1>
+          <Button onClick={() => retry()} className="text-subheader">
+            Retry
+          </Button>
+        </div>
       )}
     </>
   );

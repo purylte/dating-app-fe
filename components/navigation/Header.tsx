@@ -26,34 +26,11 @@ export default function Header() {
         </div>
         <div>
           <Dropdown vertical="bottom" horizontal="left">
-            <Button tabIndex={0} color="ghost" shape="circle">
-              <Icon icon="ph:bell" className="w-2/3 h-2/3" />
-            </Button>
-            <Dropdown.Menu
-              tabIndex={0}
-              className="mt-3 card card-compact w-96 bg-base-100 !p-0"
-            >
-              <Card.Body className="card-body">
-                <span className="text-paragraph">
-                  Welcome to Meow! asd asd asd asda s
-                </span>
-                <Divider className="m-0" />
-                <span className="text-paragraph">... asdas you!</span>
-              </Card.Body>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown vertical="bottom" horizontal="left">
             <Button color="ghost" className="avatar" shape="circle">
-              <div className="w-10 rounded-full">
-                <Image
-                  size={3}
-                  src={
-                    "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
-                  }
-                  alt={"Profile Picture"}
-                  className="rounded-full aspect-square"
-                />
-              </div>
+              <Icon
+                icon="iconamoon:profile-circle-fill"
+                className="w-10 h-10"
+              />
             </Button>
             <Dropdown.Menu className="w-32 menu-compact">
               <Dropdown.Item className="font-bold" href="/profile">
