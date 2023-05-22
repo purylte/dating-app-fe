@@ -1,10 +1,12 @@
+import getUrl from "./getUrl";
+
 export default function register(
   username: String,
   password: String,
   successCallback: Function,
   errorCallback: Function
 ) {
-  fetch("http://localhost:3000/auth/signup", {
+  fetch(getUrl("auth", "auth/signup"), {
     method: "POST",
     body: JSON.stringify({
       username,

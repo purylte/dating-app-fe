@@ -53,10 +53,14 @@ export default function Header() {
               </div>
             </Button>
             <Dropdown.Menu className="w-32 menu-compact">
-              <Dropdown.Item className="font-bold">Profile</Dropdown.Item>
-              <Dropdown.Item className="font-bold">Settings</Dropdown.Item>
-              <Dropdown.Item className="font-bold">
-                <Link href="/logout">Logout</Link>
+              <Dropdown.Item className="font-bold" href="/profile">
+                Profile
+              </Dropdown.Item>
+              <Dropdown.Item className="font-bold" href="/social">
+                Social
+              </Dropdown.Item>
+              <Dropdown.Item className="font-bold" href="/logout">
+                Logout
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

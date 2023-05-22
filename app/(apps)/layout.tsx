@@ -9,7 +9,7 @@ import Header from "@/components/navigation/Header";
 export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   useEffect(() => {
-    fetchAuth("http://localhost:3000/auth/profile", {
+    fetchAuth("auth", "auth/profile", {
       method: "GET",
     })
       .then((res) => {

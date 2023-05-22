@@ -1,4 +1,5 @@
 import { setCookie } from "cookies-next";
+import getUrl from "./getUrl";
 
 export default function login(
   username: String,
@@ -6,7 +7,7 @@ export default function login(
   successCallback: Function,
   errorCallback: Function
 ) {
-  fetch("http://localhost:3000/auth/signin", {
+  fetch(getUrl("auth", "auth/signin"), {
     method: "POST",
     body: JSON.stringify({
       username,

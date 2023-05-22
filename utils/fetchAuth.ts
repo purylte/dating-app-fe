@@ -1,14 +1,18 @@
 import { getCookie } from "cookies-next";
+import getUrl from "./getUrl";
 
 export default function fetchAuth(
-  url: RequestInfo | URL,
+  type: string,
+  endpoint: string,
   init?: RequestInit | undefined,
   headers?: HeadersInit | undefined
 ) {
   const token = getCookie("access-token");
-  return fetch(url, {
+
+  return fetch(getUrl(type, endpoint), {
     ...init,
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
       ...headers,
     },
