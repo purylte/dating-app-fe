@@ -7,9 +7,9 @@ type AddFriendProps = {
 
 export default function AddFriend({ onAdd }: AddFriendProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <h1 className="text-header">Add Friend</h1>
-      <Form onSubmit={(e) => onAdd(e)}>
+      <Form onSubmit={(e) => onAdd(e)} className="flex flex-col gap-4">
         <Input
           type="text"
           name="username"

@@ -8,14 +8,15 @@ type FriendListProps = {
 };
 export default function FriendList({ friends, onRemove }: FriendListProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <h1 className="text-header">Friend List</h1>
       <div className="flex flex-col gap-4">
         {friends.map((friend) => (
           <div key={friend}>
-            <p>{friend}</p>
             <Button onClick={() => onRemove(friend)}>
-              <Icon icon="mdi:remove-bold" />
+              <p className="text-paragraph">
+                {friend} <Icon icon="mdi:remove-bold" />
+              </p>
             </Button>
           </div>
         ))}

@@ -27,15 +27,21 @@ export default function Social() {
       method: "POST",
       body: JSON.stringify({ username: formData.get("username") }),
     }).then((res) => {
-      res.json().then((data) => {
-        console.log(data);
-        const friendsTemp: string[] = [];
-        data.teman.map((friend: { username: string }) => {
-          friendsTemp.push(friend.username);
+      if (!res.ok) {
+        res.json().then((data) => {
+          console.log(data);
         });
-        setFriends(friendsTemp);
-        setUpdate(update + 1);
-      });
+      } else {
+        res.json().then((data) => {
+          console.log(data);
+          const friendsTemp: string[] = [];
+          data.teman.map((friend: { username: string }) => {
+            friendsTemp.push(friend.username);
+          });
+          setFriends(friendsTemp);
+          setUpdate(update + 1);
+        });
+      }
     });
   };
 
@@ -56,9 +62,9 @@ export default function Social() {
     });
   };
   return (
-    <>
+    <div className="flex flex-row justify-center flex-1 gap-32 pt-8">
       <AddFriend onAdd={handleAdd} />
       <FriendList friends={friends} onRemove={handleRemove} />
-    </>
+    </div>
   );
 }
