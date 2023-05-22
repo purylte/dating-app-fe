@@ -1,9 +1,6 @@
-import { Inter } from "next/font/google";
 import SwipeProfile from "@/components/home/SwipeProfile";
 import SwipeButton from "@/components/home/SwipeButton";
 import Icon from "@/components/Icon";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (

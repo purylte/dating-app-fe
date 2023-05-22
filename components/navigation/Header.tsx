@@ -4,8 +4,8 @@ import { Button, Card, Divider, Dropdown, Navbar } from "react-daisyui";
 import Image from "../Image";
 import Icon from "../Icon";
 import Link from "next/link";
-import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import LogoButton from "./LogoButton";
 
 export default function Header() {
   const router = useRouter();
@@ -13,9 +13,7 @@ export default function Header() {
     <div className="flex w-full items-center justify-center gap-2 font-sans">
       <Navbar className="bg-base-300 shadow-xl">
         <div className="flex-1">
-          <Button className="text-3xl normal-case" color="ghost">
-            <Link href="/">Meow!</Link>
-          </Button>
+          <LogoButton />
           <Button className="text-xl normal-case" color="ghost">
             <Link href="/">Home</Link>
           </Button>
@@ -57,14 +55,8 @@ export default function Header() {
             <Dropdown.Menu className="w-32 menu-compact">
               <Dropdown.Item className="font-bold">Profile</Dropdown.Item>
               <Dropdown.Item className="font-bold">Settings</Dropdown.Item>
-              <Dropdown.Item
-                className="font-bold"
-                onClick={(e) => {
-                  deleteCookie("access-token");
-                  router.push("/login");
-                }}
-              >
-                Logout
+              <Dropdown.Item className="font-bold">
+                <Link href="/logout">Logout</Link>
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

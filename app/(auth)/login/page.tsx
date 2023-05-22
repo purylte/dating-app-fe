@@ -1,62 +1,49 @@
 "use client";
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { Button, Form, Input, Link } from "react-daisyui";
+import login from "@/utils/login";
 
 export default function Login() {
   const router = useRouter();
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const password: string = e.target["password"].value;
-    const username: string = e.target["username"].value;
-    // fetch("http://34.70.123.231:3000/auth/login/", {
-    fetch("api/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          alert("Invalid username or password");
-        } else if (res.status === 200) {
-          res.json().then((data) => {
-            setCookie("access-token", "test");
-            router.push("/");
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const formData = new FormData(e.target as HTMLFormElement);
+    login(
+      formData.get("username") as String,
+      formData.get("password") as String,
+      () => router.push("/"),
+      () => console.log("error")
+    );
   };
   return (
-    <div>
+    <div className="w-2/3">
       <h1 className="text-header"> Login </h1>
       <Form onSubmit={(e) => onSubmit(e)}>
         <Form.Label title="Username" />
         <Input
           name="username"
           type="text"
-          placeholder="username"
+          placeholder="Your Username"
           className="input-bordered"
         />
-        <Form.Label title="Password" />
+        <Form.Label title="Password" className="mt-4" />
         <Input
           name="password"
-          type="text"
-          placeholder="password"
+          type="password"
+          placeholder="Your Password"
           className="input-bordered"
         />
-        <label className="label">
+        <label className="label mt-4">
           <Link href="#" className="label-text-alt" hover>
             Forgot password?
           </Link>
         </label>
-        <label className="label">
+        <label className="label pt-0 pb-0">
           <Link href="/register" className="label-text-alt" hover>
             Dont have an account? Register here.
           </Link>
         </label>
-        <Button className="mt-6" type="submit">
+        <Button className="mt-8" type="submit">
           Login
         </Button>
       </Form>

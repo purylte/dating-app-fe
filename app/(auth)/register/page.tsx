@@ -1,44 +1,40 @@
 "use client";
+import register from "@/utils/register";
 import { useRouter } from "next/navigation";
 import { Button, Form, Input, Link } from "react-daisyui";
 
 export default function Register() {
   const router = useRouter();
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const password: string = e.target["password"].value;
-    const username: string = e.target["username"].value;
-    // fetch("http://34.70.123.231:3000/auth/signup", {
-    fetch("api/signup", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => {
-        router.push("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const formData = new FormData(e.target as HTMLFormElement);
+    register(
+      formData.get("username") as String,
+      formData.get("password") as String,
+      () => router.push("/login"),
+      () => console.log("error")
+    );
   };
+
   return (
-    <div>
+    <div className="w-2/3">
       <h1 className="text-header"> Register </h1>
       <Form onSubmit={(e) => onSubmit(e)}>
         <Form.Label title="Username" />
         <Input
           name="username"
           type="text"
-          placeholder="username"
+          placeholder="Your Username"
           className="input-bordered"
         />
-        <Form.Label title="Password" />
+        <Form.Label title="Password" className="mt-4" />
         <Input
           name="password"
-          type="text"
-          placeholder="password"
+          type="password"
+          placeholder="Your Password"
           className="input-bordered"
         />
-        <Button className="mt-6" type="submit">
+        <Button className="mt-16" type="submit">
           Register
         </Button>
       </Form>
