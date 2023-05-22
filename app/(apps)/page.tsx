@@ -50,7 +50,7 @@ export default function Home() {
   useEffect(() => {
     if (!isLoading && doneIdx >= recommendeds.length) {
       setIsLoading(true);
-      fetchAuth("recommendation", "recommendation/", {
+      fetchAuth("recommendation", "recommendation/get_recommendations/", {
         method: "POST",
         body: JSON.stringify(getFilter()),
       })
@@ -84,7 +84,7 @@ export default function Home() {
   }, [recommendeds, doneIdx, isLoading]);
 
   const retry = () => {
-    fetchAuth("recommendation", "recommendation/", {
+    fetchAuth("recommendation", "recommendation/get_recommendations/", {
       method: "POST",
       body: JSON.stringify(getFilter()),
     })
