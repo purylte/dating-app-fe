@@ -21,7 +21,11 @@ export default function EditProfile({
       <h1 className="text-header"> Edit Profile </h1>
       <Form onSubmit={(e) => onSubmit(e)}>
         <Form.Label title="Gender" />
-        <select className="select select-bordered" defaultValue={gender}>
+        <select
+          className="select select-bordered"
+          defaultValue={gender}
+          name="gender"
+        >
           <option value={"default"} disabled>
             Pick one
           </option>

@@ -26,16 +26,17 @@ export default function EditProfilePage() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    fetchAuth("profile", "api/profile/update_profile_username", {
+    console.log(formData);
+    fetchAuth("profile", "api/profile/update_profile_username/", {
       method: "POST",
       body: JSON.stringify({
         gender: formData.get("gender") as String,
-        deskripsi: formData.get("description") as String,
-        domisili: formData.get("location") as String,
-        umur: formData.get("age") as String,
+        deskripsi: formData.get("deskripsi") as String,
+        domisili: formData.get("domisili") as String,
+        umur: formData.get("umur") as String,
       }),
     });
-    router.push("/");
+    router.push("/profile");
   };
 
   return (
