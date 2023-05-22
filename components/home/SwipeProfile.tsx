@@ -2,21 +2,25 @@
 import Icon from "../Icon";
 import ImageCarousel from "./ImageCarousel";
 
-export default function SwipeProfile({
-  name,
-  age,
-  bio,
-  education,
-  work,
-  photos,
-}: {
-  name: string;
+type SwipeProfileProps = {
+  username: string;
   age: number;
-  bio: string;
-  education: string;
-  work: string;
+  gender: string;
+  description: string;
+  genres: string[];
+  hobbies: string[];
   photos: string[];
-}) {
+};
+
+export default function SwipeProfile({
+  username,
+  age,
+  gender,
+  description,
+  genres,
+  hobbies,
+  photos,
+}: SwipeProfileProps) {
   return (
     <div className="flex justify-between gap-8 h-full">
       <div className="w-1/2">
@@ -24,17 +28,17 @@ export default function SwipeProfile({
       </div>
       <div className="w-1/2 flex flex-col justify-center">
         <p className="pb-2 text-header font-bold">
-          {name}, {age}
+          {username}, {age}, {gender}
         </p>
         <div className="pb-4 text-subheader">
           <p>
-            <Icon icon="ic:round-work" /> {work}
+            <Icon icon="ic:round-work" /> {hobbies.join(", ")}
           </p>
           <p>
-            <Icon icon="material-symbols:school-rounded" /> {education}
+            <Icon icon="material-symbols:school-rounded" /> {genres.join(", ")}
           </p>
         </div>
-        <p className="text-paragraph">{bio}</p>
+        <p className="text-paragraph">{description}</p>
       </div>
     </div>
   );
