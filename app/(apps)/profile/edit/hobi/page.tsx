@@ -7,21 +7,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-daisyui";
 
 export default function Edithobi() {
-  const [selected, setSelected] = useState<number[]>([1, 3]);
-  const [hobis, setHobis] = useState<{ id: number; hobi: string }[]>([
-    {
-      id: 1,
-      hobi: "Action",
-    },
-    {
-      id: 2,
-      hobi: "Adventure",
-    },
-    {
-      id: 3,
-      hobi: "Comedy",
-    },
-  ]);
+  const [selected, setSelected] = useState<number[]>([]);
+  const [hobis, setHobis] = useState<{ id: number; hobi: string }[]>([]);
   const [update, setUpdate] = useState(0);
   useEffect(() => {
     fetchAuth("profile", "api/hobi").then((res) => {
@@ -44,18 +31,18 @@ export default function Edithobi() {
     fetchAuth("profile", "api/profile/add_hobi/", {
       method: "POST",
       body: JSON.stringify({ hobi: [id] }),
+    }).finally(() => {
+      setUpdate(update + 1);
     });
-    setUpdate(update + 1);
   };
-
   const handleDelete = (id: number) => {
     fetchAuth("profile", "api/profile/delete_hobi/", {
       method: "DELETE",
       body: JSON.stringify({ hobi: [id] }),
+    }).finally(() => {
+      setUpdate(update + 1);
     });
-    setUpdate(update + 1);
   };
-
   return (
     <div className="flex items-center flex-1 flex-col">
       <SelectFormHobi

@@ -6,21 +6,8 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-daisyui";
 
 export default function EditGenre() {
-  const [selected, setSelected] = useState<number[]>([1, 3]);
-  const [genres, setGenres] = useState<{ id: number; genre: string }[]>([
-    {
-      id: 1,
-      genre: "Action",
-    },
-    {
-      id: 2,
-      genre: "Adventure",
-    },
-    {
-      id: 3,
-      genre: "Comedy",
-    },
-  ]);
+  const [selected, setSelected] = useState<number[]>([]);
+  const [genres, setGenres] = useState<{ id: number; genre: string }[]>([]);
   const [update, setUpdate] = useState(0);
   useEffect(() => {
     fetchAuth("profile", "api/genre").then((res) => {
@@ -44,16 +31,18 @@ export default function EditGenre() {
     fetchAuth("profile", "api/profile/add_genre/", {
       method: "POST",
       body: JSON.stringify({ genre: [id] }),
+    }).finally(() => {
+      setUpdate(update + 1);
     });
-    setUpdate(update + 1);
   };
 
   const handleDelete = (id: number) => {
     fetchAuth("profile", "api/profile/delete_genre/", {
       method: "DELETE",
       body: JSON.stringify({ genre: [id] }),
+    }).finally(() => {
+      setUpdate(update + 1);
     });
-    setUpdate(update + 1);
   };
 
   return (
