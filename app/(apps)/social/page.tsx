@@ -61,6 +61,7 @@ export default function Social() {
       });
     });
   };
+
   return (
     <div className="flex flex-row justify-center flex-1 gap-32 pt-8">
       <AddFriend onAdd={handleAdd} />

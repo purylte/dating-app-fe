@@ -1,14 +1,11 @@
-"use client";
-import SelectFormGenre from "@/components/profile/SelectFormGenre";
 import fetchAuth from "@/utils/fetchAuth";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Button } from "react-daisyui";
+import { useEffect, useState } from "react";
 
-export default function EditGenre() {
+export const useEditGenre = () => {
   const [selected, setSelected] = useState<number[]>([]);
   const [genres, setGenres] = useState<{ id: number; genre: string }[]>([]);
   const [update, setUpdate] = useState(0);
+
   useEffect(() => {
     fetchAuth("profile", "api/genre").then((res) => {
       res.json().then((data) => {
@@ -45,17 +42,5 @@ export default function EditGenre() {
     });
   };
 
-  return (
-    <div className="flex items-center flex-1 flex-col">
-      <SelectFormGenre
-        data={genres}
-        selected={selected}
-        addFunction={handleAdd}
-        deleteFunction={handleDelete}
-      />
-      <Button className="mt-16 text-subheader" color="success">
-        <Link href="/profile">Done</Link>
-      </Button>
-    </div>
-  );
-}
+  return { selected, genres, handleAdd, handleDelete };
+};

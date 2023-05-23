@@ -16,7 +16,9 @@ export default function AddFriend({ onAdd }: AddFriendProps) {
           placeholder="Username"
           className="input input-bordered"
         />
-        <Button type="submit">Add</Button>
+        <Button type="submit" className="btn-primary">
+          Add
+        </Button>
       </Form>
     </div>
   );

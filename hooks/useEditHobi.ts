@@ -1,15 +1,11 @@
-"use client";
-import SelectFormGenre from "@/components/profile/SelectFormGenre";
-import SelectFormHobi from "@/components/profile/SelectFormHobi";
 import fetchAuth from "@/utils/fetchAuth";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Button } from "react-daisyui";
+import { useEffect, useState } from "react";
 
-export default function Edithobi() {
+export const useEditHobi = () => {
   const [selected, setSelected] = useState<number[]>([]);
   const [hobis, setHobis] = useState<{ id: number; hobi: string }[]>([]);
   const [update, setUpdate] = useState(0);
+
   useEffect(() => {
     fetchAuth("profile", "api/hobi").then((res) => {
       res.json().then((data) => {
@@ -43,17 +39,6 @@ export default function Edithobi() {
       setUpdate(update + 1);
     });
   };
-  return (
-    <div className="flex items-center flex-1 flex-col">
-      <SelectFormHobi
-        data={hobis}
-        selected={selected}
-        addFunction={handleAdd}
-        deleteFunction={handleDelete}
-      />
-      <Button className="mt-16 text-subheader" color="success">
-        <Link href="/profile">Done</Link>
-      </Button>
-    </div>
-  );
-}
+
+  return { selected, hobis, handleAdd, handleDelete };
+};

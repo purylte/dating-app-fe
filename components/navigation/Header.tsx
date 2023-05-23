@@ -11,7 +11,7 @@ export default function Header() {
   const router = useRouter();
   return (
     <div className="flex w-full items-center justify-center gap-2 font-sans">
-      <Navbar className="bg-base-300 shadow-xl">
+      <Navbar className="bg-primary shadow-xl">
         <div className="flex-1">
           <LogoButton />
           <Button className="text-xl normal-case" color="ghost">

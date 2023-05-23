@@ -20,6 +20,6 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: ["valentine"],
+    themes: ["pastel"],
   },
 };

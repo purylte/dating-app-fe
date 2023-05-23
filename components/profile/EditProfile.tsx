@@ -1,62 +1,71 @@
-import React, { useState } from "react";
-import { Button, Form, Input, Select, Textarea } from "react-daisyui";
+import React from "react";
+import { Button, Form, Input, Select, Textarea, Modal } from "react-daisyui";
+import { useEditProfile } from "@/hooks";
 
 type EditProfileProps = {
-  gender: string;
-  age: number;
-  location: string;
-  description: string;
-  onSubmit: (e: React.FormEvent) => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 };
 
-export default function EditProfile({
-  gender,
-  age,
-  location,
-  description,
-  onSubmit,
-}: EditProfileProps) {
-  return (
-    <div className="w-2/3">
-      <h1 className="text-header"> Edit Profile </h1>
-      <Form onSubmit={(e) => onSubmit(e)}>
-        <Form.Label title="Gender" />
-        <select
-          className="select select-bordered"
-          defaultValue={gender}
-          name="gender"
-        >
-          <option value={"default"} disabled>
-            Pick one
-          </option>
-          <option value={"L"}>Male</option>
-          <option value={"P"}>Female</option>
-        </select>
-        <Form.Label title="Age" />
-        <Input
-          name="umur"
-          type="number"
-          defaultValue={age}
-          className="input-bordered"
-        />
-        <Form.Label title="Location" />
-        <Input
-          name="domisili"
-          type="text"
-          defaultValue={location}
-          className="input-bordered"
-        />
-        <Form.Label title="Description" className="mt-4" />
-        <Textarea
-          name="deskripsi"
-          defaultValue={description}
-          className="input-bordered"
-        />
+export default function EditProfile({ isOpen, onClose }: EditProfileProps) {
+  const { gender, age, location, description, onSubmit } = useEditProfile();
 
-        <Button className="mt-8" type="submit">
-          Submit
-        </Button>
-      </Form>
+  const handleCancelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onClose?.("cancel");
+  };
+
+  return (
+    <div>
+      <Modal open={isOpen}>
+        <Modal.Header>
+          <h2 className="modal-title">Edit Profile</h2>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={(e) => onSubmit(e, "submit")}>
+            <Form.Label title="Gender" />
+            <Select
+              defaultValue={gender}
+              name="gender"
+              className="select select-bordered"
+            >
+              <option value="default" disabled>
+                Pick one
+              </option>
+              <option value="L">Male</option>
+              <option value="P">Female</option>
+            </Select>
+            <Form.Label title="Age" />
+            <Input
+              name="umur"
+              type="number"
+              defaultValue={age}
+              className="input-bordered"
+            />
+            <Form.Label title="Location" />
+            <Input
+              name="domisili"
+              type="text"
+              defaultValue={location}
+              className="input-bordered"
+            />
+            <Form.Label title="Description" className="mt-4" />
+            <Textarea
+              name="deskripsi"
+              defaultValue={description}
+              className="input-bordered"
+            />
+            <div className="flex justify-end mt-6">
+              <Button className="mr-2" onClick={handleCancelClick}>
+                Cancel
+              </Button>
+              <Button className="btn-primary" type="submit">
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

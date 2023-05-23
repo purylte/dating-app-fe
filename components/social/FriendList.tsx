@@ -13,7 +13,7 @@ export default function FriendList({ friends, onRemove }: FriendListProps) {
       <div className="flex flex-col gap-4">
         {friends.map((friend) => (
           <div key={friend}>
-            <Button onClick={() => onRemove(friend)}>
+            <Button className="bg-accent" onClick={() => onRemove(friend)}>
               <p className="text-paragraph">
                 {friend} <Icon icon="mdi:remove-bold" />
               </p>
