@@ -3,7 +3,10 @@ import classNames from "classnames";
 type ChatBubbleProps = {
   text: string;
   isMine?: boolean;
-  timestamp: Date;
+  timestamp: {
+    _seconds: number;
+    _nanoseconds: number;
+  };
 };
 export default function ChatBubble({
   text,
@@ -28,11 +31,17 @@ export default function ChatBubble({
       >
         <p className="text-paragraph">{text}</p>
         <p className="text-caption whitespace-nowrap">
-          {timestamp.toLocaleTimeString(navigator.languages, {
+          {new Date(timestamp._seconds * 1000).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}
         </p>
+        {/* <p className="text-caption whitespace-nowrap">
+          {timestamp.toLocaleTimeString(navigator.languages, {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p> */}
       </div>
     </div>
   );
