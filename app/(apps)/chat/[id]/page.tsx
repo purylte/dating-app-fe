@@ -8,6 +8,12 @@ import { Button, Textarea } from "react-daisyui";
 import { Socket, io } from "socket.io-client";
 
 export default function Chat({ params }: any) {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    const current: any = messagesEndRef.current;
+    current?.scrollIntoView({ behavior: "smooth" });
+  };
   const [myId, setMyId] = React.useState();
   const [myMessage, setMyMessage] = React.useState<string>("");
   const [messages, setMessages] = React.useState<
@@ -52,6 +58,9 @@ export default function Chat({ params }: any) {
           });
         });
         setMessages(listMessage);
+        setTimeout(() => {
+          scrollToBottom();
+        }, 500);
       });
     });
     const token = getCookie("access-token");
@@ -78,6 +87,9 @@ export default function Chat({ params }: any) {
           },
         },
       ]);
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
     });
 
     // Clean up the socket connection on component unmount
@@ -89,6 +101,9 @@ export default function Chat({ params }: any) {
   const onSend = () => {
     sendMessage();
     setMyMessage("");
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
   };
   const sendMessage = () => {
     socket.current?.emit("message", {
@@ -98,8 +113,8 @@ export default function Chat({ params }: any) {
   };
 
   return (
-    <div className="pl-8 flex h-full flex-col justify-end">
-      <div className="grow justify-start">
+    <div className="pl-8 flex h-full flex-col justify-end overflow-y-hidden p-8">
+      <div className="grow justify-start overflow-y-auto">
         <div className="flex-col flex">
           {messages.map((message, index) => (
             <ChatBubble
@@ -109,6 +124,7 @@ export default function Chat({ params }: any) {
               key={index}
             />
           ))}
+          <div ref={messagesEndRef}></div>
         </div>
       </div>
       <Textarea
