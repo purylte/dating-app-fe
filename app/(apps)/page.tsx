@@ -155,15 +155,15 @@ export default function Home() {
                 fetchAuth("swipe", `swipe/like/${currentRec.id}`, {
                   method: "POST",
                 }).then((res) => {
-                  fetchAuth("chat", "api/chat/create", {
-                    method: "POST",
-                    body: JSON.stringify({
-                      agent_username: currentRec.username,
-                      agent_id: currentRec.id,
-                    }),
-                  }).finally(() => {
-                    setDoneIdx(doneIdx + 1);
-                  });
+                  // fetchAuth("chat", "api/chat/create", {
+                  //   method: "POST",
+                  //   body: JSON.stringify({
+                  //     agent_username: currentRec.username,
+                  //     agent_id: currentRec.id,
+                  //   }),
+                  // }).finally(() => {
+                  setDoneIdx(doneIdx + 1);
+                  // });
                 });
               }}
             />
