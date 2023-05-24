@@ -7,6 +7,8 @@ export default function getUrl(type: string, url: string) {
     return `http://34.28.50.95/${url}`;
   } else if (type === "swipe") {
     return `http://35.193.64.71/${url}`;
+  } else if (type === "chat") {
+    return `http://35.223.12.163:3000/${url}`;
   } else {
     throw new Error("Invalid type");
   }
