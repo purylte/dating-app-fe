@@ -23,18 +23,19 @@ export default function Register() {
         <Form className="space-y-4" onSubmit={(e) => onSubmit(e)}>
           <div>
             <label className="label">
-              <span className="text-base label-text">Username</span>
+              <span className="label-text">Username</span>
             </label>
             <Input
               name="username"
               type="text"
               placeholder="Your Username"
               className="w-full input input-bordered input-primary m-0"
+              autoFocus
             />
           </div>
           <div>
             <label className="label">
-              <span className="text-base label-text">Password</span>
+              <span className="label-text">Password</span>
             </label>
             <Input
               name="password"

@@ -12,7 +12,7 @@ export default function EditProfile({ isOpen, onClose }: EditProfileProps) {
 
   const handleCancelClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    onClose?.("cancel");
+    onClose?.();
   };
 
   return (
@@ -29,9 +29,7 @@ export default function EditProfile({ isOpen, onClose }: EditProfileProps) {
               name="gender"
               className="select select-bordered"
             >
-              <option value="default" disabled>
-                Pick one
-              </option>
+              <option disabled>Pick one</option>
               <option value="L">Male</option>
               <option value="P">Female</option>
             </Select>

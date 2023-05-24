@@ -1,16 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Button, Form, Input, Link } from "react-daisyui";
+import { Button, Form, Input } from "react-daisyui";
 import login from "@/utils/login";
-import {
-  Flex,
-  Text,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Input as ChakraInput,
-} from "@chakra-ui/react";
 
 export default function Login() {
   const router = useRouter();
@@ -31,18 +22,19 @@ export default function Login() {
         <Form className="space-y-4" onSubmit={(e) => onSubmit(e)}>
           <div>
             <label className="label">
-              <span className="text-base label-text">Username</span>
+              <span className="label-text">Username</span>
             </label>
             <Input
               name="username"
               type="text"
               placeholder="Your Username"
               className="w-full input input-bordered input-primary m-0"
+              autoFocus
             />
           </div>
           <div>
             <label className="label">
-              <span className="text-base label-text">Password</span>
+              <span className="label-text">Password</span>
             </label>
             <Input
               name="password"
