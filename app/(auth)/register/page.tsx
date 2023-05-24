@@ -17,7 +17,7 @@ export default function Register() {
   };
 
   return (
-    <div className="w-full relative flex flex-col justify-center overflow-hidden">
+    <div className="w-full relative flex flex-col justify-center overflow-hidden m-8n">
       <div className="w-full max-w-xl p-6 m-auto bg-base-200 rounded-md shadow-md">
         <h1 className="text-3xl font-semibold text-center">Register</h1>
         <Form className="space-y-4" onSubmit={(e) => onSubmit(e)}>

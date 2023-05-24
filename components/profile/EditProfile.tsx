@@ -22,7 +22,7 @@ export default function EditProfile({ isOpen, onClose }: EditProfileProps) {
           <h2 className="modal-title">Edit Profile</h2>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={(e) => onSubmit(e, "submit")}>
+          <Form onSubmit={(e) => onSubmit(e, "submit", onClose)}>
             <Form.Label title="Gender" />
             <Select
               defaultValue={gender}

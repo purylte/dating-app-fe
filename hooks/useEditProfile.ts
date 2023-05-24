@@ -20,8 +20,11 @@ export const useEditProfile = () => {
     });
   }, [gender, age, location, description]);
 
-  const onSubmit = (e: React.FormEvent, buttonClicked: string) => {
-    console.log("HAIII");
+  const onSubmit = (
+    e: React.FormEvent,
+    buttonClicked: string,
+    onCloseHook?: () => void
+  ) => {
     if (buttonClicked != "cancel") {
       e.preventDefault();
       const formData = new FormData(e.target as HTMLFormElement);
@@ -33,8 +36,12 @@ export const useEditProfile = () => {
           domisili: formData.get("domisili") as String,
           umur: formData.get("umur") as String,
         }),
+      }).then((res) => {
+        res.json().then((data) => {
+          onCloseHook?.();
+          window.location.reload();
+        });
       });
-      window.location.reload();
     }
   };
 

@@ -7,7 +7,7 @@ type SelectFormProps = {
   isOpen?: boolean;
   onClose?: () => void;
 };
-export default function SelectFormHobi({ isOpen, onClose }) {
+export default function SelectFormHobi({ isOpen, onClose }: SelectFormProps) {
   const { hobis, selected, handleAdd, handleDelete } = useEditHobi();
 
   return (
