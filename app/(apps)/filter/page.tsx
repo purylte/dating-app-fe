@@ -47,7 +47,7 @@ export default function Filter() {
     router.push("/");
   };
   return (
-    <div className="m-auto w-full relative flex flex-col justify-center overflow-scroll">
+    <div className="m-auto w-full relative flex flex-col justify-center">
       <div className="w-full max-w-xl p-6 m-auto bg-base-200 rounded-md shadow-md">
         <h1 className="text-3xl font-semibold text-center">Filter</h1>
         <Form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
